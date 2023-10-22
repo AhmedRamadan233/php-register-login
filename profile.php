@@ -2,15 +2,14 @@
 session_start();
 
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-    header('Location: login.php'); // Redirect to the login page if not authenticated
+    header('Location: login.php'); 
     exit();
 }
 
 include "./connection-db.php";
 
 if (isset($_SESSION['email'])) {
-    $userEmail = $_SESSION['email']; // Retrieve the user's email from the session
-    
+    $userEmail = $_SESSION['email']; 
     $sql = "SELECT name, gender FROM users WHERE email = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $userEmail);

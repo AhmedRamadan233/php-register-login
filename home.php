@@ -13,7 +13,6 @@ $result = $conn->query($sql);
             </h2>
             <div class="row">
                 <?php
-                // Check if the query was successful
                 if ($result) {
                     while ($row = $result->fetch_assoc()) {
                         $name = $row['name'];
