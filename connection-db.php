@@ -16,15 +16,12 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 
-// Create a connection
 $conn = new mysqli($servername, $username, $password);
 
-// Check the connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Create the database if it doesn't exist
 $dbName = "php-assignment-create-automayic";
 $createDbQuery = "CREATE DATABASE IF NOT EXISTS `$dbName`";
 if ($conn->query($createDbQuery) === TRUE) {
@@ -32,10 +29,8 @@ if ($conn->query($createDbQuery) === TRUE) {
     echo "Error creating database: " . $conn->error . "\n";
 }
 
-// Switch to the newly created database
 $conn->select_db($dbName);
 
-// Create the 'users' table
 $createTableQuery = "CREATE TABLE IF NOT EXISTS users (
   id INT PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(255) NOT NULL,
@@ -47,14 +42,11 @@ $createTableQuery = "CREATE TABLE IF NOT EXISTS users (
   profile_picture VARCHAR(255),
   terms_accepted BOOLEAN NOT NULL
 )";
-if ($conn->query($createTableQuery) === TRUE) {
-    echo "Table 'users' created successfully or already exists\n";
-} else {
+if (!$conn->query($createTableQuery) === TRUE) {
     echo "Error creating table: " . $conn->error . "\n";
+
 }
 
-// Close the connection
-$conn->close();
 ?>
 
 
