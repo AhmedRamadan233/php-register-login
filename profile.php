@@ -1,13 +1,10 @@
 <?php
 session_start();
-
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     header('Location: login.php'); 
     exit();
 }
-
 include "./connection-db.php";
-
 if (isset($_SESSION['email'])) {
     $userEmail = $_SESSION['email']; 
     $sql = "SELECT name, gender FROM users WHERE email = ?";
@@ -22,17 +19,14 @@ if (isset($_SESSION['email'])) {
         $gender = $row['gender'];
     }
 }
-
 include "layouts/header.php";
 ?>
-
 <div class="container mt-4">
     <div class="row">
         <div class="col-md-12 p-3 shadow rounded">
             <h2 class="p-3 col text-center mt-3 text-white bg-dark rounded">
                 My profile
             </h2>
-            
             <?php if (isset($gender) && isset($name)) : ?>
                 <h5 class="card-title">
                     Welcome <?php if ($gender === "Male") {
@@ -44,10 +38,8 @@ include "layouts/header.php";
                     ?>
                 </h5>
             <?php endif; ?>
-
             <a href="logout.php" class="btn btn-danger">Logout</a>
         </div>
     </div>
 </div>
-
 <?php include "layouts/footer.php"; ?>

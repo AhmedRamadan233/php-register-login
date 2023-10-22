@@ -1,24 +1,19 @@
 <?php
 session_start();
-
 include "./connection-db.php";
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $entered_email = $_POST['email'];
     $entered_password = $_POST['password'];
 
     $errors = array();
-
     if (empty($entered_email)) {
         $errors['email'] = "Email is required.";
     } elseif (!filter_var($entered_email, FILTER_VALIDATE_EMAIL)) {
         $errors['email'] = "Invalid email format.";
     }
-
     if (empty($entered_password) || strlen($entered_password) < 6) {
         $errors['password'] = "Password must be at least 6 characters.";
     }
-
     if (!empty($errors)) {
         $errorParams = http_build_query(array('error' => $errors));
         header('Location: login.php?' . $errorParams);
@@ -42,7 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit();
         }
     }
-
     $errors['password'] = "Invalid email or password. Please try again.";
     $errorParams = http_build_query(array('error' => $errors));
     header('Location: login.php?' . $errorParams);

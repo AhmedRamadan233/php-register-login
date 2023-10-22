@@ -1,5 +1,4 @@
 <?php include "layouts/header.php"; ?>
-
 <div class="container mt-4">
     <div class="row">
         <div class="col-md-12 p-3 shadow rounded">
@@ -7,9 +6,7 @@
                 Home
             </h2>
             <form method="post" action="insertion-data.php" enctype="multipart/form-data">
-
                 <?php
-                    
                     $name = isset($_GET['name']) ? htmlspecialchars($_GET['name']) : '';
                     $email = isset($_GET['email']) ? htmlspecialchars($_GET['email']) : '';
                     $website = isset($_GET['website']) ? htmlspecialchars($_GET['website']) : '';
@@ -80,5 +77,4 @@
         </div>
     </div>
 </div>
-
 <?php include "layouts/footer.php"; ?>

@@ -1,11 +1,8 @@
 <?php include "layouts/header.php"; 
-
-
 if (isset($_GET['error'])) {
     $errors = $_GET['error'];
 }
 ?>
-
 <div class="container mt-4">
     <div class="row">
         <div class="col-md-12 p-3 shadow rounded">
@@ -22,8 +19,6 @@ if (isset($_GET['error'])) {
                         <?php
                     }
                 ?>
-                
-   
                 <div class="form-group">
                     <label for="email">Email:</label>
                     <input type="text" class="form-control" id="email" name="email" required>
@@ -40,5 +35,4 @@ if (isset($_GET['error'])) {
         </div>
     </div>
 </div>
-
 <?php include "layouts/footer.php"; ?>

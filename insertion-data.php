@@ -1,6 +1,5 @@
 <?php
 include "./connection-db.php";
-
 function validate($data) {
     $data = trim($data);
     $data = stripslashes($data);
@@ -31,7 +30,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } elseif (!preg_match("/^[a-zA-Z'-]+$/", $name)) {
         $errors['name'] = "Name can only contain letters, apostrophes, and hyphens.";
     }
-    
     if (empty($email)) {
       $errors['email'] = "Email is required.";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -39,15 +37,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } elseif (!isEmailUnique($email, $conn)) {
         $errors['email'] = "Email is already in use.";
     }
-
     if (empty($password) || strlen($password) < 6) {
         $errors['password'] = "Password must be at least 6 characters.";
     }
-
     if ($password !== $confirm_password) {
         $errors['confirm_password'] = "Passwords do not match.";
     }
-
     if (empty($gender)) {
         $errors['gender'] = "Gender is required.";
     }
@@ -59,9 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       header($redirect_url);
       exit;
     }
-
     $profile_picture = "default.jpeg"; 
-
     if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] === 0) {
         $file_name = $_FILES['profile_picture']['name'];
         $file_size = $_FILES['profile_picture']['size'];
@@ -81,7 +74,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $errors['profile_picture_format'] = "Only JPEG, JPG, and PNG files are allowed.";
         }
     }
-
+    else {
+        $profile_picture = "default.jpeg";
+    }
     if (!empty($errors)) {
         header("Location: index.php?error=".urlencode(serialize($errors))."&".$data);
         exit;

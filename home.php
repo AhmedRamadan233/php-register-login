@@ -1,10 +1,8 @@
 <?php include "layouts/header.php"; 
 include "./connection-db.php";
-
 $sql = "SELECT name, profile_picture FROM users ORDER BY id DESC LIMIT 3";
 $result = $conn->query($sql);
 ?>
-
 <div class="container mt-4">
     <div class="row">
         <div class="col-md-12 p-3 shadow rounded">
@@ -28,13 +26,10 @@ $result = $conn->query($sql);
                 </div>
                 <?php
                     }
-                } else {
-                    echo "Error in the SQL query: " . $conn->error;
-                }
+                } 
                 ?>
             </div>
         </div>
     </div>
 </div>
-
 <?php include "layouts/footer.php"; ?>
