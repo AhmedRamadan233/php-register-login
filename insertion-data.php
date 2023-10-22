@@ -34,11 +34,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     if (empty($email)) {
       $errors['email'] = "Email is required.";
-  } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-      $errors['email'] = "Invalid email format.";
-  } elseif (!isEmailUnique($email, $conn)) {
-      $errors['email'] = "Email is already in use.";
-  }
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors['email'] = "Invalid email format.";
+    } elseif (!isEmailUnique($email, $conn)) {
+        $errors['email'] = "Email is already in use.";
+    }
 
     if (empty($password) || strlen($password) < 6) {
         $errors['password'] = "Password must be at least 6 characters.";
@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       exit;
     }
 
-    $profile_picture = "default.jpg"; 
+    $profile_picture = "default.jpeg"; 
 
     if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] === 0) {
         $file_name = $_FILES['profile_picture']['name'];
